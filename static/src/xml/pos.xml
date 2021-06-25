@@ -62,10 +62,5 @@
         </t>
     </t> -->
 
-    <t t-name="LealButton">
-        <div class='control-button js_leal'>
-            <i class='fa fa-shopping-bag' /> Puntos Leal
-        </div>
-    </t>
 
 </templates>
