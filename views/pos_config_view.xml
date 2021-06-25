@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="pos_leal_pos_config_view_form" model="ir.ui.view">
+        <field name="name">pos_leal.pos.config.form.view</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+        <field name="arch" type="xml">
+            <sheet position="inside">
+                <h2>POS LEAL</h2>
+                <div class="row mt16 o_settings_container">
+                    <div class="col-xs-12 col-md-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="leal"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="leal" string="Puntos leal"/>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="test_leal"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="test_leal" string="Test leal"/>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <label for="default_client_id" string="Usuario leal"/>
+                            <div class="content-group mt16">
+                                <field name="user_leal"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <label for="default_client_id" string="Contraseña leal"/>
+                            <div class="content-group mt16">
+                                <field name="pass_leal"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <label for="default_client_id" string="ID Comercio"/>
+                            <div class="content-group mt16">
+                                <field name="id_comercio"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <label for="default_client_id" string="Token"/>
+                            <div class="content-group mt16">
+                                <field name="login_token"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </sheet>
+        </field>
+    </record>
+</odoo>
