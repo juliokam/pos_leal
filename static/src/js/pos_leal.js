@@ -16,35 +16,6 @@ var _t = core._t;
 
 // models.load_fields('res.partner','usuario_leal');
 
-var LealButton = screens.ActionButtonWidget.extend({
-    template: 'LealButton',
-    init: function(parent, options) {
-        this._super(parent, options);
-        this.pos.bind('change:selectedOrder',this.renderElement,this);
-    },
-    button_click: function(){
-        var self = this;
-        var order = this.pos.get_order();
-
-        this.gui.show_popup('textinput',{
-            'title': 'Ingrese usuario leal',
-            'confirm': function(usuario_leal) {
-                  self.pos.set_usuario_leal(usuario_leal);
-
-            },
-        });
-        this.renderElement();
-    },
-});
-
-screens.define_action_button({
-    'name': 'leal',
-    'widget': LealButton,
-    'condition': function(){
-        return this.pos.config.leal;
-    },
-});
-
 models.PosModel = models.PosModel.extend({
     get_usuario_leal: function(){
         return this.get('usuario_leal');
