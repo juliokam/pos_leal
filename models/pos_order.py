@@ -20,14 +20,14 @@ class PosOrder(models.Model):
             res['usuario_leal'] = ui_order['usuario_leal'] or False
         return res
 
-    # @api.model
-    # def create_from_ui(self, orders):
-    #     res = super(PosOrder, self).create_from_ui(orders)
-    #     if res:
-    #         orden = self.env['pos.order'].search([('id', '=', res[0])], limit=1)
-    #         if res and orden and orden.usuario_leal:
-    #             self.post_pos_leal(orden,orden.invoice_id)
-    #     return res
+    @api.model
+    def create_from_ui(self, orders):
+        res = super(PosOrder, self).create_from_ui(orders)
+        if res:
+            orden = self.env['pos.order'].search([('id', '=', res[0])], limit=1)
+            if res and orden and orden.usuario_leal:
+                self.post_pos_leal(orden,orden.invoice_id)
+        return res
 
     def fecha_hora_factura(self, fecha):
         fecha_convertida = datetime.datetime.strptime(str(fecha), '%Y-%m-%d %H:%M:%S.%f').date().strftime('%Y-%m-%d')
