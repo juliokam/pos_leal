@@ -16,45 +16,37 @@ var _t = core._t;
 
 // models.load_fields('res.partner','usuario_leal');
 
-models.PosModel = models.PosModel.extend({
+var _super_order = models.Order.prototype;
+models.Order = models.Order.extend({
+    export_as_JSON: function() {
+        var json = _super_order.export_as_JSON.apply(this,arguments);
+        if (this.get_usuario_leal()){
+            json.usuario_leal = this.get_usuario_leal();
+        }else{
+            json.usuario_leal = false;
+        }
+        return json;
+    },
     get_usuario_leal: function(){
         return this.get('usuario_leal');
     },
     set_usuario_leal: function(usuario_leal){
         this.set('usuario_leal', usuario_leal);
-    }
-})
-
-var _super_order = models.Order.prototype;
-models.Order = models.Order.extend({
-    export_as_JSON: function() {
-        var json = _super_order.export_as_JSON.apply(this,arguments);
-        if (this.pos.get_usuario_leal()){
-            json.usuario_leal = this.pos.get_usuario_leal();
-        }else{
-            json.usuario_leal = false;
-        }
-        console.log(json)
-        return json;
     },
-    init_from_JSON: function(json) {
-        _super_order.init_from_JSON.apply(this,arguments);
-        this.usuario_leal = this.pos.get_usuario_leal() || false;
-    },
-
 })
 
 screens.ActionpadWidget.include({
   renderElement: function(){
       PosBaseWidget.prototype.renderElement.call(this);
       var self = this;
+      var order = self.pos.get_order();
       this._super();
       this.$('.pay').click(function(){
           self.gui.show_screen('products');
           self.gui.show_popup('textinput',{
               'title': 'Ingrese usuario leal',
               'confirm': function(usuario_leal) {
-                    self.pos.set_usuario_leal(usuario_leal);
+                    order.set_usuario_leal(usuario_leal);
                     self.gui.show_screen('payment');
               },
           });
