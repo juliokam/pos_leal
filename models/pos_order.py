@@ -123,10 +123,8 @@ class PosOrder(models.Model):
 
             if 'code' in request_cargar_factura_json:
                 if request_cargar_factura_json['code'] == 100:
-                    continue
+                    return True
                 else:
                     raise UserError(str(request_cargar_factura_json['message']))
             else:
                 raise UserError(str('ERROR AL CONECTARSE CON LEAL'))
-
-        return True
