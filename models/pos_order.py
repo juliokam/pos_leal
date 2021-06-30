@@ -123,7 +123,7 @@ class PosOrder(models.Model):
 
             if 'code' in request_cargar_factura_json:
                 if request_cargar_factura_json['code'] == 100:
-                    logging.warn(request_cargar_factura_json['id_factura'])
+                    continue
                 else:
                     raise UserError(str(request_cargar_factura_json['message']))
             else:
